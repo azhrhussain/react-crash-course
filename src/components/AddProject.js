@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 
 class AddProject extends Component {
     constructor(){
@@ -8,7 +9,7 @@ class AddProject extends Component {
         }
     }
 
-  static defaultProps ={
+  static defaultProps = {
       categories: ['Web Design', 'Web Development', ' Mobile Development']
   }
   handleSubmit(e){
@@ -17,13 +18,13 @@ class AddProject extends Component {
       }
       else{
           this.setState({newProject:{
+            id: uuid.v4(),
             title: this.refs.title.value,
             category: this.refs.category.value
           }},function(){
-            //console.log(this.state);
+            
         this.props.addProject(this.state.newProject);  
         });
-     
       
   }
   e.preventDefault();
@@ -43,7 +44,7 @@ class AddProject extends Component {
               </div>
               <div>
                   <label>Catagory</label>
-                  <select type="text" ref="catagory" >
+                  <select type="text" ref="category" >
                     {categoryOptions}
                 </select>
               </div>
